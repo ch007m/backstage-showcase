@@ -22,12 +22,8 @@
     "test": {
       "outputs": ["coverage/**"]
     },
-    "lint": {},
     "//#tsc": {
       "outputs": ["dist-types/**"]
-    },
-    "//#prettier:fix": {
-      "cache": false
     }
   },
   "globalDependencies": ["tsconfig.json"]

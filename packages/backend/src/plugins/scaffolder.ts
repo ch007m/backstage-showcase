@@ -9,6 +9,7 @@ import {
   createRouter,
 } from '@backstage/plugin-scaffolder-backend';
 import type { Router } from 'express';
+import { cloneQuarkusQuickstart, createQuarkusApp } from '@qshift/plugin-quarkus-backend';
 
 export default async function createPlugin(
   env: PluginEnvironment,
@@ -27,6 +28,8 @@ export default async function createPlugin(
 
   const actions = [
     ...builtInActions,
+    cloneQuarkusQuickstart(),
+    createQuarkusApp(),
     ...env.pluginProvider
       .backendPlugins()
       .map(p => p.installer)

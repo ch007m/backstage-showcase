@@ -18,6 +18,9 @@ import { HomePage } from '../home/HomePage';
 import { LearningPaths } from '../learningPaths/LearningPathsPage';
 import { SearchPage } from '../search/SearchPage';
 import DynamicRootContext from '../DynamicRoot/DynamicRootContext';
+import { ScaffolderFieldExtensions } from '@backstage/plugin-scaffolder-react';
+import { QuarkusExtensionListField, QuarkusQuickstartPickerField } from '@qshift/plugin-quarkus';
+
 
 const AppBase = () => {
   const { AppProvider, AppRouter, dynamicRoutes } =
@@ -48,8 +51,14 @@ const AppBase = () => {
                   headerOptions={{ title: 'Software Templates' }}
                 />
               }
-            />
-            <Route path="/api-docs" element={<ApiExplorerPage />} />
+            >
+              <ScaffolderFieldExtensions>
+                <QuarkusExtensionListField />
+                <QuarkusQuickstartPickerField />
+              </ScaffolderFieldExtensions>
+            </Route>
+
+          <Route path="/api-docs" element={<ApiExplorerPage />} />
             <Route
               path="/catalog-import"
               element={
