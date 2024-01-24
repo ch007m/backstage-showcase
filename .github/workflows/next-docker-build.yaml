@@ -27,6 +27,8 @@ concurrency:
 
 env:
   REGISTRY: quay.io
+  REGISTRY_ORG: ${{ secrets.QUAY_ORG }}
+  BACKSTAGE_OCP_IMAGE_NAME: backstage-qshift-ocp
 
 jobs:
   next-docker-build:
@@ -46,9 +48,9 @@ jobs:
         uses: ./.github/actions/docker-build
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ vars.QUAY_USERNAME }}
-          password: ${{ secrets.QUAY_TOKEN }}
-          imageName: ${{ github.repository }}
+          username: ${{ secrets.QUAY_ROBOT_USER }}
+          password: ${{ secrets.QUAY_ROBOT_TOKEN }}
+          imageName: ${{ env.REGISTRY_ORG }}/${{ env.BACKSTAGE_OCP_IMAGE_NAME }}
           imageTags: |
             type=raw,value=next
             type=sha,prefix=next-
